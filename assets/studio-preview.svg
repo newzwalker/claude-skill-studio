@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14110f"/>
+      <stop offset="100%" stop-color="#0b0a09"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1916"/>
+      <stop offset="100%" stop-color="#141210"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d97757"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="680" rx="16" fill="url(#bg)" stroke="#2c2824" stroke-width="2"/>
+  <rect x="2" y="2" width="1196" height="44" rx="14" fill="#12100e"/>
+  <circle cx="26" cy="24" r="6" fill="#ef4444"/>
+  <circle cx="46" cy="24" r="6" fill="#f59e0b"/>
+  <circle cx="66" cy="24" r="6" fill="#10b981"/>
+  <text x="600" y="29" text-anchor="middle" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="13" font-weight="600">
+    Claude Skill Studio — Official Anthropic Skill Guide Linter, Token Profiler &amp; Builder (v0.3.0)
+  </text>
+
+  <rect x="42" y="68" width="38" height="38" rx="9" fill="url(#orange)"/>
+  <text x="61" y="94" text-anchor="middle" fill="#0b0a09" font-family="Segoe UI, Inter, sans-serif" font-size="22" font-weight="900">C</text>
+  <text x="94" y="94" fill="#f5f2eb" font-family="Segoe UI, Inter, sans-serif" font-size="23" font-weight="800">CLAUDE SKILL STUDIO</text>
+  <rect x="365" y="73" width="240" height="26" rx="13" fill="#261914" stroke="#d97757" stroke-width="1.2"/>
+  <text x="485" y="90" text-anchor="middle" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="11.5" font-weight="700">
+    Anthropic Official Skill Guide Spec
+  </text>
+
+  <!-- 4 KPI Cards -->
+  <rect x="42" y="126" width="262" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
+  <text x="62" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">ANTHROPIC GUIDE SCORE</text>
+  <text x="62" y="196" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="34" font-weight="800">100.0 / 100</text>
+  <text x="62" y="216" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">✓ Grade A • Ready for Claude Code</text>
+
+  <rect x="326" y="126" width="262" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
+  <text x="346" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">LEVEL-1 METADATA BUDGET</text>
+  <text x="346" y="196" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="34" font-weight="800">34 tokens</text>
+  <text x="346" y="216" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">System Prompt Always-On (≤ 80 tok)</text>
+
+  <rect x="610" y="126" width="262" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
+  <text x="630" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">LEVEL-2 SKILL.MD BODY</text>
+  <text x="630" y="196" fill="#f5f2eb" font-family="Segoe UI, Inter, sans-serif" font-size="34" font-weight="800">148 tokens</text>
+  <text x="630" y="216" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">28 lines (Progressive Disclosure OK)</text>
+
+  <rect x="894" y="126" width="264" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
+  <text x="914" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">SECURITY &amp; TRIGGER GATE</text>
+  <text x="914" y="196" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="28" font-weight="800">PASS • LOCKED</text>
+  <text x="914" y="216" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">✓ Zero XML injection • 'Use when' OK</text>
+
+  <!-- Left Panel: SKILL.md Editor -->
+  <rect x="42" y="250" width="580" height="390" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
+  <text x="64" y="280" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="13" font-weight="700">
+    LIVE SKILL.MD SPEC EDITOR (3-LEVEL PROGRESSIVE DISCLOSURE)
+  </text>
+  <rect x="62" y="294" width="540" height="326" rx="8" fill="#0b0a09" stroke="#2c2824"/>
+  <text x="78" y="322" fill="#f59e0b" font-family="Consolas, monospace" font-size="13">---</text>
+  <text x="78" y="344" fill="#d97757" font-family="Consolas, monospace" font-size="13">name: mcp-schema-auditor</text>
+  <text x="78" y="366" fill="#10b981" font-family="Consolas, monospace" font-size="12.5">description: "Audit MCP server JSON schemas and</text>
+  <text x="78" y="386" fill="#10b981" font-family="Consolas, monospace" font-size="12.5">  validate tool contracts. Use when building or</text>
+  <text x="78" y="406" fill="#10b981" font-family="Consolas, monospace" font-size="12.5">  debugging MCP servers or Claude Code tools."</text>
+  <text x="78" y="426" fill="#f59e0b" font-family="Consolas, monospace" font-size="13">---</text>
+  <text x="78" y="458" fill="#f5f2eb" font-family="Consolas, monospace" font-size="13.5" font-weight="700"># MCP Schema Auditor</text>
+  <text x="78" y="486" fill="#a39c93" font-family="Consolas, monospace" font-size="12.5">## Step-by-Step Workflow</text>
+  <text x="78" y="512" fill="#f5f2eb" font-family="Consolas, monospace" font-size="12.5">1. Inspect Tool Schema (`inputSchema`)</text>
+  <text x="78" y="536" fill="#f5f2eb" font-family="Consolas, monospace" font-size="12.5">2. Check Boundary Types &amp; Descriptions</text>
+  <text x="78" y="560" fill="#f5f2eb" font-family="Consolas, monospace" font-size="12.5">3. Run `python scripts/verify_mcp.py --strict`</text>
+
+  <!-- Right Panel: Real-time Linter Rules -->
+  <rect x="642" y="250" width="516" height="390" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
+  <text x="664" y="280" fill="#f5f2eb" font-family="Segoe UI, Inter, sans-serif" font-size="13" font-weight="700">
+    ANTHROPIC OFFICIAL GUIDE AUDIT RULES
+  </text>
+
+  <rect x="664" y="300" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
+  <text x="682" y="327" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
+    ✓ [ANT-FM-001] Valid YAML Frontmatter &amp; Level-1 Metadata
+  </text>
+
+  <rect x="664" y="356" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
+  <text x="682" y="383" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
+    ✓ [ANT-NAME-002] Strict kebab-case identifier (`mcp-schema-auditor`)
+  </text>
+
+  <rect x="664" y="412" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
+  <text x="682" y="439" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
+    ✓ [ANT-SEC-001] Zero XML angle-bracket injection in Frontmatter
+  </text>
+
+  <rect x="664" y="468" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
+  <text x="682" y="495" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
+    ✓ [ANT-DESC-002] Explicit activation trigger ("Use when...")
+  </text>
+
+  <rect x="664" y="528" width="472" height="90" rx="8" fill="#0b0a09" stroke="#2c2824"/>
+  <text x="682" y="554" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="11.5" font-weight="700">
+    TRIGGER SIMULATOR: "Can you debug my MCP server tool JSON schema?"
+  </text>
+  <text x="682" y="582" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
+    ✓ HIGH ACTIVATION CONFIDENCE — Matched: [schema, server, tool, debug]
+  </text>
+</svg>
