@@ -8,7 +8,7 @@
   <a href="https://newzwalker.github.io/claude-skill-studio/"><img src="https://img.shields.io/badge/🚀_Launch_Live_Studio-Claude_Skill_Builder-d97757?style=for-the-badge" alt="Launch Studio" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License" /></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.9+-38bdf8?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+" /></a>
-  <img src="https://img.shields.io/badge/Spec-Anthropic_Skill_Guide-f59e0b?style=for-the-badge" alt="Anthropic Skill Guide" />
+  <a href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf"><img src="https://img.shields.io/badge/Spec-Anthropic_Skill_Guide-f59e0b?style=for-the-badge" alt="Anthropic Skill Guide" /></a>
 </p>
 
 **Interactive `SKILL.md` Builder, 3-Level Progressive Disclosure Token Profiler, Security Linter, and Trigger Confidence Simulator built directly from Anthropic's official guide (*The Complete Guide to Building Skills for Claude*).**
