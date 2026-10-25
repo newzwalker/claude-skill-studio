@@ -247,12 +247,12 @@ python scripts/verify_mcp_schema.py --strict
 
     const BAD_PRESET = `---
 name: Bad_Skill_Name!
-description: A vague helper with <script>injection</script> tags and no trigger keywords at all.
+description: A vague helper with <xml-injection> tags and no trigger keywords at all.
 ---
 Do stuff.`;
 
     function estTokens(str) {
-      const words = (str.match(/\\S+/g) || []).length;
+      const words = (str.match(/\S+/g) || []).length;
       return Math.max(1, Math.round((words * 1.3 + str.length / 4) / 2));
     }
 
@@ -295,7 +295,7 @@ python scripts/verify_${name.replace(/-/g, '_')}.py --self-test
 
     function auditLive() {
       const text = document.getElementById('editor').value;
-      const lines = text.split('\\n');
+      const lines = text.split('\n');
       let score = 100;
       const rules = [];
 
@@ -303,13 +303,13 @@ python scripts/verify_${name.replace(/-/g, '_')}.py --self-test
       if (lines[0] && lines[0].trim() === '---') {
         const endIdx = lines.slice(1).findIndex(l => l.trim() === '---');
         if (endIdx !== -1) {
-          yaml = lines.slice(1, endIdx + 1).join('\\n');
-          body = lines.slice(endIdx + 2).join('\\n');
+          yaml = lines.slice(1, endIdx + 1).join('\n');
+          body = lines.slice(endIdx + 2).join('\n');
         }
       }
 
-      const nameMatch = yaml.match(/^name:\\s*(.+)$/m);
-      const descMatch = yaml.match(/^description:\\s*(.+)$/m);
+      const nameMatch = yaml.match(/^name:\s*(.+)$/m);
+      const descMatch = yaml.match(/^description:\s*(.+)$/m);
       const name = nameMatch ? nameMatch[1].trim().replace(/^["']|["']$/g, '') : '';
       const desc = descMatch ? descMatch[1].trim().replace(/^["']|["']$/g, '') : '';
 
@@ -335,7 +335,7 @@ python scripts/verify_${name.replace(/-/g, '_')}.py --self-test
         rules.push({ ok: true, id: 'ANT-SEC-001', msg: 'Frontmatter passed XML angle-bracket injection check' });
       }
 
-      const hasTrigger = /\\b(use when|use this skill when|trigger on|use for)\\b/i.test(desc);
+      const hasTrigger = /\b(use when|use this skill when|trigger on|use for)\b/i.test(desc);
       if (!hasTrigger) {
         score -= 18;
         rules.push({ ok: false, id: 'ANT-DESC-002', msg: 'Description missing explicit activation trigger ("Use when...")' });
@@ -343,7 +343,7 @@ python scripts/verify_${name.replace(/-/g, '_')}.py --self-test
         rules.push({ ok: true, id: 'ANT-DESC-002', msg: 'Description includes explicit "Use when..." trigger clause' });
       }
 
-      const hasCode = /```/.test(body) && /^#{1,3}\\s+/m.test(body);
+      const hasCode = /```/.test(body) && /^#{1,3}\s+/m.test(body);
       if (!hasCode) {
         score -= 12;
         rules.push({ ok: false, id: 'ANT-WORK-001', msg: 'Body should include markdown headings and executable code/steps' });
