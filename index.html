@@ -1,224 +1,450 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Skill Studio — Official Anthropic Skill Guide Builder, Linter &amp; Token Profiler</title>
+  <title>Claude Skill Workbench — Anthropic Skill Guide Spec</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0a09;
-      --panel: #161412;
-      --panel-2: #0f0e0c;
-      --border: #2c2824;
-      --claude-orange: #d97757;
-      --claude-amber: #f59e0b;
-      --good: #10b981;
-      --bad: #ef4444;
-      --text: #f5f2eb;
-      --muted: #a39c93;
+    :root[data-theme="light"] {
+      --bg-canvas: #F4F3EE;
+      --bg-sidebar: #EBE9E1;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #FAF9F5;
+      --bg-code: #F7F6F2;
+      --border: #E5E3DA;
+      --border-strong: #D5D2C6;
+      --text-primary: #141413;
+      --text-secondary: #5E5D59;
+      --text-muted: #87867F;
+      --accent: #C96442;
+      --accent-hover: #B55434;
+      --accent-soft: #F9ECE6;
+      --good: #2E6F40;
+      --good-bg: #EAF3EC;
+      --warn: #9E6214;
+      --warn-bg: #FDF4E7;
+      --bad: #B4362C;
+      --bad-bg: #FDECEB;
+      --shadow-sm: 0 1px 2px rgba(20, 20, 19, 0.04);
+      --shadow-md: 0 4px 20px rgba(20, 20, 19, 0.05);
     }
+
+    :root[data-theme="dark"] {
+      --bg-canvas: #191918;
+      --bg-sidebar: #141413;
+      --bg-surface: #232220;
+      --bg-subtle: #1E1E1C;
+      --bg-code: #171715;
+      --border: #32312E;
+      --border-strong: #43413C;
+      --text-primary: #F2F0E8;
+      --text-secondary: #B0AEA5;
+      --text-muted: #7C7A72;
+      --accent: #D97757;
+      --accent-hover: #E3886B;
+      --accent-soft: rgba(217, 119, 87, 0.14);
+      --good: #56B870;
+      --good-bg: rgba(86, 184, 112, 0.12);
+      --warn: #E5A443;
+      --warn-bg: rgba(229, 164, 67, 0.12);
+      --bad: #E5645A;
+      --bad-bg: rgba(229, 100, 90, 0.12);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.35);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #1f1916, #0b0a09 65%);
-      color: var(--text);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
       min-height: 100vh;
-      padding: 1.5rem 1.25rem;
-    }
-    .container { max-width: 1180px; margin: 0 auto; }
-    header {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    /* Top Navigation Bar (Claude Workbench Style) */
+    .topbar {
+      height: 56px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 1.1rem;
-      margin-bottom: 1.35rem;
-    }
-    .brand { display: flex; align-items: center; gap: 0.85rem; }
-    .logo-box {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #d97757, #b85435);
+      background: var(--bg-canvas);
+      padding: 0 1.5rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 1.2rem;
-      color: #fff;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
-    h1 { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; }
-    .pill {
-      background: rgba(217, 119, 87, 0.16);
-      color: var(--claude-orange);
-      border: 1px solid rgba(217, 119, 87, 0.4);
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .spark-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .brand-title {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.28rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+    }
+    .crumb-sep { color: var(--border-strong); font-weight: 300; }
+    .crumb-badge {
       font-size: 0.76rem;
-      font-weight: 700;
-    }
-    .btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .btn {
-      background: var(--claude-orange);
-      color: #0b0a09;
-      border: none;
-      padding: 0.55rem 1rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.84rem;
-      cursor: pointer;
-    }
-    .btn-sec {
-      background: #211e1b;
-      color: var(--text);
+      color: var(--text-secondary);
+      background: var(--bg-sidebar);
       border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 500;
     }
-    .kpi-grid {
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      font-family: "Inter", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.14s ease;
+      text-decoration: none;
+    }
+    .btn:hover { border-color: var(--border-strong); background: var(--bg-subtle); }
+    .btn-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+    .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+    /* Main Split Workbench Layout */
+    .workbench {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.9rem;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+    @media (max-width: 980px) {
+      .workbench { grid-template-columns: 1fr; }
+    }
+
+    .serif-heading {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.45rem;
+    }
+    .lead-copy {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Cards & Panels */
+    .surface-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
       margin-bottom: 1.25rem;
     }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.05rem;
+    .card-header {
+      padding: 0.85rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      font-weight: 700;
+    .card-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .val { font-size: 1.75rem; font-weight: 800; margin-top: 0.3rem; }
-    .sub { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; }
-    .studio-grid {
+    .card-body { padding: 1.2rem; }
+
+    /* Quick Generator Form */
+    .form-grid {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 1.1rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
     }
-    @media (max-width: 900px) { .studio-grid { grid-template-columns: 1fr; } }
-    textarea, input[type="text"] {
+    .field-full { grid-column: 1 / -1; }
+    .field-label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+    }
+    input[type="text"], textarea {
       width: 100%;
-      background: var(--panel-2);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem;
-      font-family: Consolas, Monaco, monospace;
-      font-size: 0.85rem;
-      margin-top: 0.45rem;
-    }
-    textarea { min-height: 330px; resize: vertical; line-height: 1.45; }
-    .rule-list { list-style: none; margin-top: 0.75rem; display: grid; gap: 0.5rem; }
-    .rule-item {
-      background: var(--panel-2);
+      background: var(--bg-code);
+      color: var(--text-primary);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 0.6rem 0.75rem;
-      font-size: 0.82rem;
-      line-height: 1.35;
+      font-size: 0.84rem;
+      font-family: "Inter", sans-serif;
+      outline: none;
+      transition: border-color 0.15s;
     }
-    .builder-box {
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+    textarea.code-editor {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      min-height: 370px;
+      border: none;
+      border-radius: 0;
+      padding: 1.15rem 1.25rem;
+      background: var(--bg-surface);
+      resize: vertical;
+    }
+
+    /* Right Artifact Inspector Panel */
+    .metrics-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.75rem;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-surface);
+    }
+    .metric-cell {
+      padding: 1rem 1.15rem;
+      border-right: 1px solid var(--border);
+    }
+    .metric-cell:last-child { border-right: none; }
+    .metric-kicker {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    .metric-num {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .metric-note {
+      font-size: 0.73rem;
+      color: var(--text-secondary);
+      margin-top: 0.15rem;
+    }
+
+    /* Checklist Rules */
+    .rule-stack {
+      display: grid;
+      gap: 0.6rem;
+    }
+    .rule-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      font-size: 0.83rem;
+      line-height: 1.45;
+    }
+    .pill-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.15rem 0.45rem;
+      border-radius: 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pill-pass { background: var(--good-bg); color: var(--good); }
+    .pill-fail { background: var(--bad-bg); color: var(--bad); }
+
+    /* Chat Bubble Trigger Simulator */
+    .chat-preview {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.95rem;
       margin-top: 0.65rem;
-      margin-bottom: 0.65rem;
+    }
+    .user-bubble {
+      background: var(--bg-sidebar);
+      padding: 0.65rem 0.9rem;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      display: inline-block;
+      margin-bottom: 0.7rem;
+    }
+    .claude-response {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo-box">C</div>
-        <div>
-          <div style="display:flex; align-items:center; gap:0.65rem;">
-            <h1>CLAUDE SKILL STUDIO</h1>
-            <span class="pill">Anthropic Skill Guide Spec v0.3.0</span>
+  <nav class="topbar">
+    <div class="brand">
+      <!-- Anthropic Claude Starburst Icon -->
+      <svg class="spark-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L13.6 8.8L19.8 5.4L15.6 11.1L22 13.5L15.2 14.8L18.4 20.9L12.7 16.5L10.2 22.5L9.1 15.6L3 18.8L7.4 13.2L1.5 10.5L8.4 9.4L5.4 3.2L11 7.6L12 2Z"/>
+      </svg>
+      <span class="brand-title">Claude Skill Workbench</span>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-badge">The Complete Guide to Building Skills for Claude</span>
+    </div>
+    <div class="top-actions">
+      <a class="btn" href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf" target="_blank" rel="noopener">
+        Read Official PDF Guide ↗
+      </a>
+      <button class="btn" onclick="toggleTheme()" id="themeBtn">☾ Dark</button>
+      <button class="btn btn-primary" onclick="downloadSkill()">Download SKILL.md</button>
+    </div>
+  </nav>
+
+  <main class="workbench">
+    <!-- Left Column: Authoring & Live Artifact Editor -->
+    <section>
+      <h1 class="serif-heading">Design &amp; validate skills for Claude.</h1>
+      <p class="lead-copy">
+        Author modular <code>SKILL.md</code> instructions using Anthropic’s three-level progressive disclosure architecture. Keep system-prompt metadata lean, enforce frontmatter security, and test trigger precision before shipping.
+      </p>
+
+      <!-- Quick Scaffolder Card -->
+      <div class="surface-card">
+        <div class="card-header">
+          <span class="card-title">1. Scaffold from Skill Intent</span>
+          <div style="display:flex; gap:0.4rem;">
+            <button class="btn" style="padding:0.25rem 0.6rem; font-size:0.75rem;" onclick="loadPreset('good')">Load Official Example</button>
+            <button class="btn" style="padding:0.25rem 0.6rem; font-size:0.75rem;" onclick="loadPreset('bad')">Test Broken Skill</button>
           </div>
-          <p style="color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem;">
-            Interactive SKILL.md Builder, 3-Level Progressive Disclosure Token Profiler &amp; Security Linter
-          </p>
         </div>
-      </div>
-      <div class="btn-row">
-        <button class="btn" onclick="loadPreset('good')">Load Grade-A Official Template</button>
-        <button class="btn btn-sec" onclick="loadPreset('bad')">Load Broken / Vulnerable Skill</button>
-        <button class="btn btn-sec" onclick="downloadSkill()">⬇ Download SKILL.md</button>
-      </div>
-    </header>
-
-    <div class="kpi-grid">
-      <div class="card">
-        <div class="label">Anthropic Guide Score</div>
-        <div class="val" id="scoreVal" style="color: var(--good);">100.0 / 100</div>
-        <div class="sub" id="gradeSub">Grade A • Ready for Claude Code / MCP</div>
-      </div>
-      <div class="card">
-        <div class="label">Level-1 Frontmatter Budget</div>
-        <div class="val" id="l1Tokens" style="color: var(--claude-orange);">34 tok</div>
-        <div class="sub">Always loaded in System Prompt (Target ≤ 80 tok)</div>
-      </div>
-      <div class="card">
-        <div class="label">Level-2 SKILL.md Body</div>
-        <div class="val" id="l2Tokens">148 tok</div>
-        <div class="sub" id="lineSub">28 lines (Target ≤ 500 lines)</div>
-      </div>
-      <div class="card">
-        <div class="label">Trigger &amp; Security Gate</div>
-        <div class="val" id="secVal" style="color: var(--good); font-size: 1.35rem;">PASS • LOCKED</div>
-        <div class="sub">No XML injection &amp; explicit 'Use when' trigger</div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom: 1.2rem;">
-      <div class="label">Quick Skill Generator (Auto-Scaffolds Anthropic 3-Level Progressive Disclosure Format)</div>
-      <div class="builder-box">
-        <div>
-          <input type="text" id="genName" placeholder="kebab-case-name (e.g. mcp-inspector)" value="mcp-schema-auditor" />
+        <div class="card-body">
+          <div class="form-grid">
+            <div>
+              <label class="field-label">Skill Name (kebab-case)</label>
+              <input type="text" id="genName" value="mcp-schema-auditor" />
+            </div>
+            <div>
+              <label class="field-label">Core Capability (What it does)</label>
+              <input type="text" id="genWhat" value="Audit MCP server JSON schemas and validate tool input contracts" />
+            </div>
+            <div class="field-full">
+              <label class="field-label">Activation Trigger ("Use when...")</label>
+              <input type="text" id="genWhen" value="the user builds, debugs, or validates MCP tool definitions, JSON schemas, or Claude Code integrations" />
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="generateFromInputs()">Generate Compliant SKILL.md</button>
         </div>
-        <div>
-          <input type="text" id="genWhat" placeholder="What it does..." value="Audit MCP server JSON schemas and validate tool input contracts" />
-        </div>
-        <div>
-          <input type="text" id="genWhen" placeholder="Use when..." value="the user builds, debugs, or tests MCP tool definitions or JSON schemas" />
-        </div>
-      </div>
-      <button class="btn" onclick="generateFromInputs()">⚡ Generate Compliant SKILL.md</button>
-    </div>
-
-    <div class="studio-grid">
-      <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="label">Live `SKILL.md` Editor (Edit to run real-time Linter)</span>
-          <button class="btn btn-sec" style="padding:0.25rem 0.65rem; font-size:0.75rem;" onclick="navigator.clipboard.writeText(document.getElementById('editor').value)">Copy Markdown</button>
-        </div>
-        <textarea id="editor" oninput="auditLive()"></textarea>
       </div>
 
-      <div class="card">
-        <span class="label">Anthropic Official Guide Audit Rules (Real-Time)</span>
-        <ul class="rule-list" id="ruleList"></ul>
+      <!-- Editor Artifact Card -->
+      <div class="surface-card">
+        <div class="card-header">
+          <span class="card-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            SKILL.md Artifact
+          </span>
+          <button class="btn" style="padding:0.25rem 0.65rem; font-size:0.75rem;" onclick="copyEditor(this)">Copy Markdown</button>
+        </div>
+        <textarea class="code-editor" id="editor" oninput="auditLive()" spellcheck="false"></textarea>
+      </div>
+    </section>
 
-        <div style="margin-top: 1.1rem; border-top: 1px solid var(--border); padding-top: 0.9rem;">
-          <span class="label">Trigger Match Simulator (Test a user prompt against your description)</span>
-          <input type="text" id="testPrompt" placeholder="Type a sample user prompt..." value="Can you debug my MCP server tool JSON schema?" oninput="auditLive()" />
-          <div id="triggerResult" style="margin-top: 0.55rem; font-size: 0.83rem; font-weight: 700; color: var(--good);"></div>
+    <!-- Right Column: Progressive Disclosure Profiler & Linter -->
+    <section>
+      <div class="surface-card">
+        <div class="card-header">
+          <span class="card-title">Anthropic Guide Compliance &amp; Token Budget</span>
+          <span class="pill-tag pill-pass" id="statusPill">Grade A · Compliant</span>
+        </div>
+
+        <div class="metrics-bar">
+          <div class="metric-cell">
+            <div class="metric-kicker">Compliance Score</div>
+            <div class="metric-num" id="scoreVal">100 / 100</div>
+            <div class="metric-note" id="gradeSub">Passes all 6 spec gates</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-kicker">Level 1 · YAML Metadata</div>
+            <div class="metric-num" id="l1Tokens">34 tok</div>
+            <div class="metric-note">Always in system prompt (≤ 80)</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-kicker">Level 2 · SKILL.md Body</div>
+            <div class="metric-num" id="l2Tokens">148 tok</div>
+            <div class="metric-note" id="lineSub">28 lines (Target ≤ 500)</div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="field-label" style="margin-bottom: 0.6rem;">Specification Audit Breakdown</div>
+          <div class="rule-stack" id="ruleList"></div>
         </div>
       </div>
-    </div>
-  </div>
+
+      <!-- Trigger Simulator Card -->
+      <div class="surface-card">
+        <div class="card-header">
+          <span class="card-title">Trigger Routing Simulator</span>
+          <span style="font-size:0.74rem; color:var(--text-muted);">Tests Level-1 description matching</span>
+        </div>
+        <div class="card-body">
+          <label class="field-label">Sample User Prompt in Claude</label>
+          <input type="text" id="testPrompt" value="Can you help me debug my MCP server tool JSON schema?" oninput="auditLive()" />
+
+          <div class="chat-preview">
+            <div class="user-bubble" id="bubbleText">Can you help me debug my MCP server tool JSON schema?</div>
+            <div class="claude-response" id="triggerResult"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script>
     const GOOD_PRESET = `---
 name: mcp-schema-auditor
-description: "Audit MCP server JSON schemas and validate tool input contracts. Use when the user builds, debugs, or tests MCP tool definitions, JSON schemas, or Claude Code integrations. Do NOT use for general REST APIs."
+description: "Audit MCP server JSON schemas and validate tool input contracts. Use when the user builds, debugs, or validates MCP tool definitions, JSON schemas, or Claude Code integrations. Do NOT use for general REST APIs."
 ---
 
 # MCP Schema Auditor
@@ -237,7 +463,7 @@ Deterministic validation workflow for Model Context Protocol (MCP) tool definiti
 3. **Run Self-Test**: Execute the deterministic schema verifier before returning results:
 
 \`\`\`bash
-python scripts/verify_mcp_schema.py --strict
+claude-skill-studio lint SKILL.md
 \`\`\`
 
 ## Bundled Resources (Level-3 Progressive Disclosure)
@@ -250,6 +476,20 @@ name: Bad_Skill_Name!
 description: A vague helper with <xml-injection> tags and no trigger keywords at all.
 ---
 Do stuff.`;
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      document.getElementById('themeBtn').textContent = next === 'dark' ? '☀ Light' : '☾ Dark';
+    }
+
+    function copyEditor(btn) {
+      navigator.clipboard.writeText(document.getElementById('editor').value);
+      const old = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = old, 1200);
+    }
 
     function estTokens(str) {
       const words = (str.match(/\S+/g) || []).length;
@@ -282,7 +522,7 @@ ${what}.
 3. **Verify Output**: Run automated verification before declaring completion:
 
 \`\`\`bash
-python scripts/verify_${name.replace(/-/g, '_')}.py --self-test
+claude-skill-studio lint SKILL.md
 \`\`\`
 `;
       auditLive();
@@ -315,75 +555,73 @@ python scripts/verify_${name.replace(/-/g, '_')}.py --self-test
 
       if (!yaml) {
         score -= 45;
-        rules.push({ ok: false, id: 'ANT-FM-001', msg: 'Missing YAML frontmatter delimited by ---' });
+        rules.push({ ok: false, id: 'ANT-FM-001', msg: 'Missing YAML frontmatter delimited by --- at line 1.' });
       } else {
-        rules.push({ ok: true, id: 'ANT-FM-001', msg: 'YAML frontmatter block parsed cleanly' });
+        rules.push({ ok: true, id: 'ANT-FM-001', msg: 'YAML frontmatter block parsed cleanly.' });
       }
 
       if (!name || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(name)) {
         score -= 20;
-        rules.push({ ok: false, id: 'ANT-NAME-002', msg: 'Skill `name` must be strict kebab-case (lowercase + hyphens)' });
+        rules.push({ ok: false, id: 'ANT-NAME-002', msg: 'Skill `name` must be strict kebab-case (lowercase alphanumeric and hyphens).' });
       } else {
-        rules.push({ ok: true, id: 'ANT-NAME-002', msg: `Valid kebab-case skill name: ${name}` });
+        rules.push({ ok: true, id: 'ANT-NAME-002', msg: `Valid kebab-case skill identifier: "${name}".` });
       }
 
       const hasXml = /[<>]/.test(yaml);
       if (hasXml) {
         score -= 25;
-        rules.push({ ok: false, id: 'ANT-SEC-001', msg: 'Security Alert: YAML frontmatter contains < or > XML tags' });
+        rules.push({ ok: false, id: 'ANT-SEC-001', msg: 'Security Alert: YAML frontmatter contains < or > angle brackets.' });
       } else {
-        rules.push({ ok: true, id: 'ANT-SEC-001', msg: 'Frontmatter passed XML angle-bracket injection check' });
+        rules.push({ ok: true, id: 'ANT-SEC-001', msg: 'Frontmatter passed XML angle-bracket injection check.' });
       }
 
       const hasTrigger = /\b(use when|use this skill when|trigger on|use for)\b/i.test(desc);
       if (!hasTrigger) {
         score -= 18;
-        rules.push({ ok: false, id: 'ANT-DESC-002', msg: 'Description missing explicit activation trigger ("Use when...")' });
+        rules.push({ ok: false, id: 'ANT-DESC-002', msg: 'Description lacks explicit activation trigger ("Use when...").' });
       } else {
-        rules.push({ ok: true, id: 'ANT-DESC-002', msg: 'Description includes explicit "Use when..." trigger clause' });
+        rules.push({ ok: true, id: 'ANT-DESC-002', msg: 'Description includes explicit "Use when..." activation trigger.' });
       }
 
       const hasCode = /```/.test(body) && /^#{1,3}\s+/m.test(body);
       if (!hasCode) {
         score -= 12;
-        rules.push({ ok: false, id: 'ANT-WORK-001', msg: 'Body should include markdown headings and executable code/steps' });
+        rules.push({ ok: false, id: 'ANT-WORK-001', msg: 'Body should include section headings and executable verification steps.' });
       } else {
-        rules.push({ ok: true, id: 'ANT-WORK-001', msg: 'Structured workflow headings and verification command present' });
+        rules.push({ ok: true, id: 'ANT-WORK-001', msg: 'Progressive disclosure Level-2 workflow structure verified.' });
       }
 
       score = Math.max(0, Math.min(100, score));
       const grade = score >= 90 ? 'A' : (score >= 80 ? 'B' : (score >= 65 ? 'C' : 'F'));
 
-      const scoreEl = document.getElementById('scoreVal');
-      scoreEl.textContent = `${score.toFixed(1)} / 100`;
-      scoreEl.style.color = score >= 85 ? 'var(--good)' : (score >= 70 ? 'var(--claude-amber)' : 'var(--bad)');
-      document.getElementById('gradeSub').textContent = `Grade ${grade} • ${score >= 85 ? 'Anthropic Guide Compliant' : 'Needs Spec Fixes'}`;
+      document.getElementById('scoreVal').textContent = `${score} / 100`;
+      document.getElementById('gradeSub').textContent = score >= 85 ? 'Passes all Anthropic Guide checks' : 'Action required in frontmatter';
+
+      const pill = document.getElementById('statusPill');
+      pill.textContent = `Grade ${grade} · ${score >= 85 ? 'Compliant' : 'Needs Fixes'}`;
+      pill.className = `pill-tag ${score >= 85 ? 'pill-pass' : 'pill-fail'}`;
 
       document.getElementById('l1Tokens').textContent = `${estTokens(yaml)} tok`;
       document.getElementById('l2Tokens').textContent = `${estTokens(body)} tok`;
-      document.getElementById('lineSub').textContent = `${lines.length} lines (Target ≤ 500 lines)`;
-
-      const secEl = document.getElementById('secVal');
-      secEl.textContent = (!hasXml && hasTrigger) ? 'PASS • LOCKED' : 'WARN • CHECK';
-      secEl.style.color = (!hasXml && hasTrigger) ? 'var(--good)' : 'var(--bad)';
+      document.getElementById('lineSub').textContent = `${lines.length} lines (Target ≤ 500)`;
 
       document.getElementById('ruleList').innerHTML = rules.map(r =>
-        `<li class="rule-item" style="border-left: 3px solid ${r.ok ? 'var(--good)' : 'var(--bad)'}">
-          <strong style="color:${r.ok ? 'var(--good)' : 'var(--bad)'}">${r.ok ? '✓' : '✖'} [${r.id}]</strong> ${r.msg}
-        </li>`
+        `<div class="rule-row">
+          <span class="pill-tag ${r.ok ? 'pill-pass' : 'pill-fail'}">${r.ok ? 'PASS' : 'ISSUE'} · ${r.id}</span>
+          <span>${r.msg}</span>
+        </div>`
       ).join('');
 
-      // Simulate trigger overlap
-      const prompt = document.getElementById('testPrompt').value.toLowerCase();
+      const promptVal = document.getElementById('testPrompt').value;
+      document.getElementById('bubbleText').textContent = promptVal || '...';
+      const prompt = promptVal.toLowerCase();
       const keywords = (desc.toLowerCase().match(/[a-z0-9]{4,}/g) || []);
-      const hits = keywords.filter(k => prompt.includes(k));
+      const hits = [...new Set(keywords.filter(k => prompt.includes(k)))];
       const trigEl = document.getElementById('triggerResult');
       if (hits.length >= 2 && hasTrigger) {
-        trigEl.style.color = 'var(--good)';
-        trigEl.textContent = `✓ HIGH ACTIVATION CONFIDENCE — Matched trigger tokens: [${[...new Set(hits)].slice(0,5).join(', ')}]`;
+        trigEl.innerHTML = `<span class="pill-tag pill-pass">Triggered</span> Claude loads <code>${name || 'SKILL.md'}</code> (matched: <em>${hits.slice(0,5).join(', ')}</em>)`;
       } else {
-        trigEl.style.color = 'var(--claude-amber)';
-        trigEl.textContent = `⚠ LOW ACTIVATION CONFIDENCE — Add domain keywords from the prompt into your YAML description.`;
+        trigEl.innerHTML = `<span class="pill-tag pill-fail">Skipped</span> Low keyword overlap — add domain terms to YAML <code>description</code>.`;
       }
     }
 

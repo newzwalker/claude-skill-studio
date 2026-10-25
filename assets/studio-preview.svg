@@ -1,106 +1,181 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#14110f"/>
-      <stop offset="100%" stop-color="#0b0a09"/>
-    </linearGradient>
-    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1c1916"/>
-      <stop offset="100%" stop-color="#141210"/>
-    </linearGradient>
-    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#d97757"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
-    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#141413" flood-opacity="0.06"/>
+    </filter>
   </defs>
 
-  <rect width="1200" height="680" rx="16" fill="url(#bg)" stroke="#2c2824" stroke-width="2"/>
-  <rect x="2" y="2" width="1196" height="44" rx="14" fill="#12100e"/>
-  <circle cx="26" cy="24" r="6" fill="#ef4444"/>
-  <circle cx="46" cy="24" r="6" fill="#f59e0b"/>
-  <circle cx="66" cy="24" r="6" fill="#10b981"/>
-  <text x="600" y="29" text-anchor="middle" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="13" font-weight="600">
-    Claude Skill Studio — Official Anthropic Skill Guide Linter, Token Profiler &amp; Builder (v0.3.0)
+  <!-- Warm Parchment Canvas Background (Authentic Claude.ai Palette) -->
+  <rect width="1200" height="690" rx="16" fill="#F4F3EE" stroke="#E5E3DA" stroke-width="2"/>
+
+  <!-- Top Navigation Bar -->
+  <rect x="2" y="2" width="1196" height="54" rx="14" fill="#F4F3EE"/>
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#E5E3DA" stroke-width="1.5"/>
+
+  <!-- Claude Terracotta Starburst Logo -->
+  <g transform="translate(32, 16)" fill="#C96442">
+    <path d="M12 2L13.6 8.8L19.8 5.4L15.6 11.1L22 13.5L15.2 14.8L18.4 20.9L12.7 16.5L10.2 22.5L9.1 15.6L3 18.8L7.4 13.2L1.5 10.5L8.4 9.4L5.4 3.2L11 7.6L12 2Z"/>
+  </g>
+  <text x="66" y="35" fill="#141413" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="500">
+    Claude Skill Workbench
+  </text>
+  <text x="275" y="34" fill="#D5D2C6" font-family="Inter, system-ui, sans-serif" font-size="16">/</text>
+  <rect x="292" y="18" width="290" height="24" rx="6" fill="#EBE9E1" stroke="#E5E3DA" stroke-width="1"/>
+  <text x="437" y="34" text-anchor="middle" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="500">
+    The Complete Guide to Building Skills for Claude
   </text>
 
-  <rect x="42" y="68" width="38" height="38" rx="9" fill="url(#orange)"/>
-  <text x="61" y="94" text-anchor="middle" fill="#0b0a09" font-family="Segoe UI, Inter, sans-serif" font-size="22" font-weight="900">C</text>
-  <text x="94" y="94" fill="#f5f2eb" font-family="Segoe UI, Inter, sans-serif" font-size="23" font-weight="800">CLAUDE SKILL STUDIO</text>
-  <rect x="365" y="73" width="240" height="26" rx="13" fill="#261914" stroke="#d97757" stroke-width="1.2"/>
-  <text x="485" y="90" text-anchor="middle" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="11.5" font-weight="700">
-    Anthropic Official Skill Guide Spec
+  <!-- Top Right Buttons -->
+  <rect x="910" y="14" width="116" height="32" rx="8" fill="#FFFFFF" stroke="#E5E3DA" stroke-width="1"/>
+  <text x="968" y="34" text-anchor="middle" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">
+    PDF Guide ↗
+  </text>
+  <rect x="1036" y="14" width="132" height="32" rx="8" fill="#C96442"/>
+  <text x="1102" y="34" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">
+    Download SKILL.md
   </text>
 
-  <!-- 4 KPI Cards -->
-  <rect x="42" y="126" width="262" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
-  <text x="62" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">ANTHROPIC GUIDE SCORE</text>
-  <text x="62" y="196" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="34" font-weight="800">100.0 / 100</text>
-  <text x="62" y="216" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">✓ Grade A • Ready for Claude Code</text>
-
-  <rect x="326" y="126" width="262" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
-  <text x="346" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">LEVEL-1 METADATA BUDGET</text>
-  <text x="346" y="196" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="34" font-weight="800">34 tokens</text>
-  <text x="346" y="216" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">System Prompt Always-On (≤ 80 tok)</text>
-
-  <rect x="610" y="126" width="262" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
-  <text x="630" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">LEVEL-2 SKILL.MD BODY</text>
-  <text x="630" y="196" fill="#f5f2eb" font-family="Segoe UI, Inter, sans-serif" font-size="34" font-weight="800">148 tokens</text>
-  <text x="630" y="216" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">28 lines (Progressive Disclosure OK)</text>
-
-  <rect x="894" y="126" width="264" height="104" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
-  <text x="914" y="152" fill="#a39c93" font-family="Segoe UI, Inter, sans-serif" font-size="11" font-weight="700">SECURITY &amp; TRIGGER GATE</text>
-  <text x="914" y="196" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="28" font-weight="800">PASS • LOCKED</text>
-  <text x="914" y="216" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="11.5">✓ Zero XML injection • 'Use when' OK</text>
-
-  <!-- Left Panel: SKILL.md Editor -->
-  <rect x="42" y="250" width="580" height="390" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
-  <text x="64" y="280" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="13" font-weight="700">
-    LIVE SKILL.MD SPEC EDITOR (3-LEVEL PROGRESSIVE DISCLOSURE)
+  <!-- Left Column: Editorial Serif Heading + Artifact Editor -->
+  <text x="42" y="108" fill="#141413" font-family="Georgia, 'Times New Roman', serif" font-size="31" font-weight="500">
+    Design &amp; validate skills for Claude.
   </text>
-  <rect x="62" y="294" width="540" height="326" rx="8" fill="#0b0a09" stroke="#2c2824"/>
-  <text x="78" y="322" fill="#f59e0b" font-family="Consolas, monospace" font-size="13">---</text>
-  <text x="78" y="344" fill="#d97757" font-family="Consolas, monospace" font-size="13">name: mcp-schema-auditor</text>
-  <text x="78" y="366" fill="#10b981" font-family="Consolas, monospace" font-size="12.5">description: "Audit MCP server JSON schemas and</text>
-  <text x="78" y="386" fill="#10b981" font-family="Consolas, monospace" font-size="12.5">  validate tool contracts. Use when building or</text>
-  <text x="78" y="406" fill="#10b981" font-family="Consolas, monospace" font-size="12.5">  debugging MCP servers or Claude Code tools."</text>
-  <text x="78" y="426" fill="#f59e0b" font-family="Consolas, monospace" font-size="13">---</text>
-  <text x="78" y="458" fill="#f5f2eb" font-family="Consolas, monospace" font-size="13.5" font-weight="700"># MCP Schema Auditor</text>
-  <text x="78" y="486" fill="#a39c93" font-family="Consolas, monospace" font-size="12.5">## Step-by-Step Workflow</text>
-  <text x="78" y="512" fill="#f5f2eb" font-family="Consolas, monospace" font-size="12.5">1. Inspect Tool Schema (`inputSchema`)</text>
-  <text x="78" y="536" fill="#f5f2eb" font-family="Consolas, monospace" font-size="12.5">2. Check Boundary Types &amp; Descriptions</text>
-  <text x="78" y="560" fill="#f5f2eb" font-family="Consolas, monospace" font-size="12.5">3. Run `python scripts/verify_mcp.py --strict`</text>
-
-  <!-- Right Panel: Real-time Linter Rules -->
-  <rect x="642" y="250" width="516" height="390" rx="12" fill="url(#card)" stroke="#2c2824" stroke-width="1.5"/>
-  <text x="664" y="280" fill="#f5f2eb" font-family="Segoe UI, Inter, sans-serif" font-size="13" font-weight="700">
-    ANTHROPIC OFFICIAL GUIDE AUDIT RULES
+  <text x="42" y="134" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="13.5">
+    Author modular SKILL.md workflows using Anthropic’s three-level progressive disclosure architecture.
   </text>
 
-  <rect x="664" y="300" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
-  <text x="682" y="327" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
-    ✓ [ANT-FM-001] Valid YAML Frontmatter &amp; Level-1 Metadata
-  </text>
+  <!-- Left Card 1: Quick Scaffolder -->
+  <g filter="url(#cardShadow)">
+    <rect x="42" y="156" width="550" height="156" rx="14" fill="#FFFFFF" stroke="#E5E3DA" stroke-width="1.5"/>
+    <rect x="43" y="157" width="548" height="38" rx="13" fill="#FAF9F5"/>
+    <line x1="42" y1="195" x2="592" y2="195" stroke="#E5E3DA" stroke-width="1"/>
+    <text x="62" y="181" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600">
+      1. Scaffold from Skill Intent
+    </text>
 
-  <rect x="664" y="356" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
-  <text x="682" y="383" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
-    ✓ [ANT-NAME-002] Strict kebab-case identifier (`mcp-schema-auditor`)
-  </text>
+    <text x="62" y="218" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">Skill Name (kebab-case)</text>
+    <rect x="62" y="225" width="210" height="32" rx="7" fill="#F7F6F2" stroke="#E5E3DA" stroke-width="1"/>
+    <text x="74" y="245" fill="#141413" font-family="Consolas, monospace" font-size="12">mcp-schema-auditor</text>
 
-  <rect x="664" y="412" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
-  <text x="682" y="439" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
-    ✓ [ANT-SEC-001] Zero XML angle-bracket injection in Frontmatter
-  </text>
+    <text x="288" y="218" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">Activation Trigger ("Use when...")</text>
+    <rect x="288" y="225" width="284" height="32" rx="7" fill="#F7F6F2" stroke="#E5E3DA" stroke-width="1"/>
+    <text x="300" y="245" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12">debugging MCP tool schemas &amp; contracts</text>
 
-  <rect x="664" y="468" width="472" height="44" rx="8" fill="#0f1915" stroke="#10b981" stroke-width="1.2"/>
-  <text x="682" y="495" fill="#34d399" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
-    ✓ [ANT-DESC-002] Explicit activation trigger ("Use when...")
-  </text>
+    <rect x="62" y="268" width="196" height="32" rx="8" fill="#C96442"/>
+    <text x="160" y="288" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">
+      Generate Compliant SKILL.md
+    </text>
+  </g>
 
-  <rect x="664" y="528" width="472" height="90" rx="8" fill="#0b0a09" stroke="#2c2824"/>
-  <text x="682" y="554" fill="#d97757" font-family="Segoe UI, Inter, sans-serif" font-size="11.5" font-weight="700">
-    TRIGGER SIMULATOR: "Can you debug my MCP server tool JSON schema?"
-  </text>
-  <text x="682" y="582" fill="#10b981" font-family="Segoe UI, Inter, sans-serif" font-size="12.5" font-weight="700">
-    ✓ HIGH ACTIVATION CONFIDENCE — Matched: [schema, server, tool, debug]
-  </text>
+  <!-- Left Card 2: SKILL.md Artifact Editor -->
+  <g filter="url(#cardShadow)">
+    <rect x="42" y="330" width="550" height="324" rx="14" fill="#FFFFFF" stroke="#E5E3DA" stroke-width="1.5"/>
+    <rect x="43" y="331" width="548" height="40" rx="13" fill="#FAF9F5"/>
+    <line x1="42" y1="371" x2="592" y2="371" stroke="#E5E3DA" stroke-width="1"/>
+    <text x="62" y="356" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600">
+      SKILL.md Artifact
+    </text>
+    <rect x="488" y="340" width="88" height="24" rx="6" fill="#FFFFFF" stroke="#E5E3DA" stroke-width="1"/>
+    <text x="532" y="356" text-anchor="middle" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">Copy</text>
+
+    <text x="64" y="400" fill="#87867F" font-family="Consolas, monospace" font-size="12.5">---</text>
+    <text x="64" y="422" fill="#C96442" font-family="Consolas, monospace" font-size="12.5">name: mcp-schema-auditor</text>
+    <text x="64" y="444" fill="#2E6F40" font-family="Consolas, monospace" font-size="12.5">description: "Audit MCP server JSON schemas and</text>
+    <text x="64" y="464" fill="#2E6F40" font-family="Consolas, monospace" font-size="12.5">  validate tool contracts. Use when building or</text>
+    <text x="64" y="484" fill="#2E6F40" font-family="Consolas, monospace" font-size="12.5">  debugging MCP servers or Claude Code tools."</text>
+    <text x="64" y="504" fill="#87867F" font-family="Consolas, monospace" font-size="12.5">---</text>
+    <text x="64" y="536" fill="#141413" font-family="Consolas, monospace" font-size="13.5" font-weight="700"># MCP Schema Auditor</text>
+    <text x="64" y="564" fill="#5E5D59" font-family="Consolas, monospace" font-size="12.5">## Step-by-Step Workflow</text>
+    <text x="64" y="588" fill="#141413" font-family="Consolas, monospace" font-size="12">1. Inspect Tool Schema (`inputSchema` required keys)</text>
+    <text x="64" y="610" fill="#141413" font-family="Consolas, monospace" font-size="12">2. Check Boundary Types &amp; Parameter Descriptions</text>
+    <text x="64" y="632" fill="#141413" font-family="Consolas, monospace" font-size="12">3. Run `claude-skill-studio lint SKILL.md`</text>
+  </g>
+
+  <!-- Right Column: Compliance & Progressive Disclosure Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="616" y="84" width="542" height="398" rx="14" fill="#FFFFFF" stroke="#E5E3DA" stroke-width="1.5"/>
+    <rect x="617" y="85" width="540" height="42" rx="13" fill="#FAF9F5"/>
+    <line x1="616" y1="127" x2="1158" y2="127" stroke="#E5E3DA" stroke-width="1"/>
+    <text x="638" y="111" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="600">
+      Anthropic Guide Compliance &amp; Token Budget
+    </text>
+    <rect x="1018" y="95" width="120" height="22" rx="6" fill="#EAF3EC"/>
+    <text x="1078" y="110" text-anchor="middle" fill="#2E6F40" font-family="Consolas, monospace" font-size="11" font-weight="600">
+      Grade A · Compliant
+    </text>
+
+    <!-- 3 Metric Cells -->
+    <line x1="616" y1="210" x2="1158" y2="210" stroke="#E5E3DA" stroke-width="1"/>
+    <line x1="796" y1="127" x2="796" y2="210" stroke="#E5E3DA" stroke-width="1"/>
+    <line x1="976" y1="127" x2="976" y2="210" stroke="#E5E3DA" stroke-width="1"/>
+
+    <text x="636" y="150" fill="#87867F" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">Compliance Score</text>
+    <text x="636" y="180" fill="#141413" font-family="Georgia, serif" font-size="26" font-weight="600">100 / 100</text>
+    <text x="636" y="198" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="11">Passes all 5 spec gates</text>
+
+    <text x="816" y="150" fill="#87867F" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">Level 1 · YAML Metadata</text>
+    <text x="816" y="180" fill="#141413" font-family="Georgia, serif" font-size="26" font-weight="600">34 tok</text>
+    <text x="816" y="198" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="11">Always in system prompt (≤ 80)</text>
+
+    <text x="996" y="150" fill="#87867F" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">Level 2 · SKILL.md Body</text>
+    <text x="996" y="180" fill="#141413" font-family="Georgia, serif" font-size="26" font-weight="600">148 tok</text>
+    <text x="996" y="198" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="11">28 lines (Target ≤ 500)</text>
+
+    <!-- Rule Audit Rows -->
+    <g transform="translate(636, 226)">
+      <rect width="502" height="42" rx="9" fill="#FAF9F5" stroke="#E5E3DA"/>
+      <rect x="12" y="10" width="112" height="22" rx="5" fill="#EAF3EC"/>
+      <text x="68" y="25" text-anchor="middle" fill="#2E6F40" font-family="Consolas, monospace" font-size="11" font-weight="600">PASS · ANT-FM-001</text>
+      <text x="136" y="26" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12.5">YAML frontmatter block parsed cleanly.</text>
+    </g>
+
+    <g transform="translate(636, 278)">
+      <rect width="502" height="42" rx="9" fill="#FAF9F5" stroke="#E5E3DA"/>
+      <rect x="12" y="10" width="124" height="22" rx="5" fill="#EAF3EC"/>
+      <text x="74" y="25" text-anchor="middle" fill="#2E6F40" font-family="Consolas, monospace" font-size="11" font-weight="600">PASS · ANT-NAME-002</text>
+      <text x="148" y="26" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12.5">Valid kebab-case skill identifier: "mcp-schema-auditor".</text>
+    </g>
+
+    <g transform="translate(636, 330)">
+      <rect width="502" height="42" rx="9" fill="#FAF9F5" stroke="#E5E3DA"/>
+      <rect x="12" y="10" width="118" height="22" rx="5" fill="#EAF3EC"/>
+      <text x="71" y="25" text-anchor="middle" fill="#2E6F40" font-family="Consolas, monospace" font-size="11" font-weight="600">PASS · ANT-SEC-001</text>
+      <text x="142" y="26" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12.5">Frontmatter passed XML angle-bracket injection check.</text>
+    </g>
+
+    <g transform="translate(636, 382)">
+      <rect width="502" height="42" rx="9" fill="#FAF9F5" stroke="#E5E3DA"/>
+      <rect x="12" y="10" width="124" height="22" rx="5" fill="#EAF3EC"/>
+      <text x="74" y="25" text-anchor="middle" fill="#2E6F40" font-family="Consolas, monospace" font-size="11" font-weight="600">PASS · ANT-DESC-002</text>
+      <text x="148" y="26" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12.5">Description includes explicit "Use when..." trigger.</text>
+    </g>
+
+    <g transform="translate(636, 434)">
+      <rect width="502" height="36" rx="9" fill="#FAF9F5" stroke="#E5E3DA"/>
+      <rect x="12" y="7" width="124" height="22" rx="5" fill="#EAF3EC"/>
+      <text x="74" y="22" text-anchor="middle" fill="#2E6F40" font-family="Consolas, monospace" font-size="11" font-weight="600">PASS · ANT-WORK-001</text>
+      <text x="148" y="23" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12.5">Progressive disclosure Level-2 workflow verified.</text>
+    </g>
+  </g>
+
+  <!-- Right Column Bottom Card: Trigger Simulator -->
+  <g filter="url(#cardShadow)">
+    <rect x="616" y="500" width="542" height="154" rx="14" fill="#FFFFFF" stroke="#E5E3DA" stroke-width="1.5"/>
+    <rect x="617" y="501" width="540" height="38" rx="13" fill="#FAF9F5"/>
+    <line x1="616" y1="539" x2="1158" y2="539" stroke="#E5E3DA" stroke-width="1"/>
+    <text x="638" y="525" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600">
+      Trigger Routing Simulator
+    </text>
+
+    <rect x="636" y="554" width="502" height="82" rx="10" fill="#F4F3EE" stroke="#E5E3DA"/>
+    <rect x="650" y="566" width="380" height="28" rx="10" fill="#EBE9E1"/>
+    <text x="664" y="584" fill="#141413" font-family="Inter, system-ui, sans-serif" font-size="12">
+      "Can you help me debug my MCP server tool JSON schema?"
+    </text>
+
+    <rect x="650" y="602" width="76" height="22" rx="5" fill="#EAF3EC"/>
+    <text x="688" y="617" text-anchor="middle" fill="#2E6F40" font-family="Consolas, monospace" font-size="11" font-weight="600">Triggered</text>
+    <text x="736" y="617" fill="#5E5D59" font-family="Inter, system-ui, sans-serif" font-size="12">
+      Claude loads mcp-schema-auditor (matched: debug, server, tool, json, schema)
+    </text>
+  </g>
 </svg>

@@ -1,14 +1,14 @@
-# 🧡 Claude Skill Studio (`claude-skill-studio`)
+# ✴️ Claude Skill Workbench (`claude-skill-studio`)
 
 <p align="center">
-  <img src="assets/studio-preview.svg" alt="Claude Skill Studio UI Preview" width="100%" />
+  <img src="assets/studio-preview.svg" alt="Claude Skill Workbench UI Preview" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://newzwalker.github.io/claude-skill-studio/"><img src="https://img.shields.io/badge/🚀_Launch_Live_Studio-Claude_Skill_Builder-d97757?style=for-the-badge" alt="Launch Studio" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License" /></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.9+-38bdf8?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+" /></a>
-  <a href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf"><img src="https://img.shields.io/badge/Spec-Anthropic_Skill_Guide-f59e0b?style=for-the-badge" alt="Anthropic Skill Guide" /></a>
+  <a href="https://newzwalker.github.io/claude-skill-studio/"><img src="https://img.shields.io/badge/Launch_Workbench-Claude_Skill_Studio-C96442?style=for-the-badge" alt="Launch Workbench" /></a>
+  <a href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf"><img src="https://img.shields.io/badge/Anthropic_PDF-Official_Skill_Guide-EBE9E1?style=for-the-badge&labelColor=141413" alt="Anthropic Skill Guide" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2E6F40?style=for-the-badge" alt="MIT License" /></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.9+-5E5D59?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+" /></a>
 </p>
 
 **Interactive `SKILL.md` Builder, 3-Level Progressive Disclosure Token Profiler, Security Linter, and Trigger Confidence Simulator built directly from Anthropic's official guide (*The Complete Guide to Building Skills for Claude*).**
